@@ -18,7 +18,68 @@ Alternatively, you can clone this repo and reference the SimpleBlackboard.Net pr
 
 ## Features
 
-- A feature
+- An abstract Blackboard class that can be extended to create custom blackboards.
+
+## Usage
+
+```csharp
+
+using SimpleBlackboard.Net;
+
+public class MyBlackboard : Blackboard
+{
+    private readonly Dictionary<string, object> _data = new();
+
+    public override bool SetValue<T>(string key, T value)
+    {
+        _data[key] = value!;
+        return true;
+    }
+
+    public override T GetValue<T>(string key)
+    {
+        if (_data.TryGetValue(key, out var value) && value is T typedValue)
+        {
+            return typedValue;
+        }
+
+        return default;
+    }
+    
+    public override bool HasValue<T>(string key)
+    {
+        return this._data.ContainsKey(key);
+    }
+    
+    public override void ClearBlackboard()
+    {
+        _data.Clear();
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        var blackboard = new MyBlackboard();
+        
+        // Set a value
+        blackboard.SetValue("Score", 100);
+        
+        // Get a value
+        int score = blackboard.GetValue<int>("Score");
+        Console.WriteLine($"Score: {score}");
+        
+        // Check if a value exists
+        bool hasScore = blackboard.HasValue<int>("Score");
+        Console.WriteLine($"Has Score: {hasScore}");
+        
+        // Clear the blackboard
+        blackboard.ClearBlackboard();
+    }
+}
+
+```
 
 ## Development
 

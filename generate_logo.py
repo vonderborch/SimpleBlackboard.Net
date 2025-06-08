@@ -28,7 +28,7 @@ command = [
     project_name,
     os.path.join(build_directory, "font", "copperplate_gothic_bold.otf"),
     font_sizes,
-    str(280),
+    str(360),
     "white",
 ]
 

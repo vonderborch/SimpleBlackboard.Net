@@ -150,10 +150,10 @@ logo_icon_file = sys.argv[4].strip()  # the logo icon file to be generated
 text_to_add = sys.argv[5].strip()  # the text to add to the logo
 text_to_add_font = sys.argv[6].strip()  # the font to use for the text
 text_to_add_font_size = sys.argv[7].strip()  # the font size for the text
-text_to_add_starting_y = int(sys.argv[8].strip())  # the starting y coordinate for the text
+text_to_add_starting_y = int(sys.argv[8].strip())  # the starting y coordinate for åthe text
 text_to_add_color = sys.argv[9].strip()  # the color of the text
 
-text_to_add_parts = list(text_to_add.split(".")) if "." in text_to_add else [text_to_add]
+text_to_add_parts = ["Simple Blackboard.Net"]
 text_to_add_font_size_parts = [int(val) for val in text_to_add_font_size.split(",")]
 generator = LogoGenerator(
     virtual_environment_directory=virtual_environment_directory,
